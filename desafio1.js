@@ -1,118 +1,48 @@
-class ProductManager{
+class ProductManager {
+  constructor() {
+    this.products = [];
+    this.productIdCounter = 1; 
+  }
 
-
-
-    constructor(){
-
-this.productos =[]
-
-
-}
-
-addProduct(title, description, price, thumbnail, code, stock) {
-
-    const idProduct = this.products.length + 1;
-    const codeEncontrado = this.products.find(
-
-      (producto) => code === producto.code
+  addProduct(title, description, price, thumbnail, code, stock) {
    
-     );
-     if (codeEncontrado) {
-  
-      console.log("Producto con code proporcionado ya existe");
-   
+    if (!title || !description || !price || !thumbnail || !code || !stock) {
+      console.log("Faltan datos");
       return;
-   
-     }
+    }
 
-    const product = {
+    // Validacion que el campo "code" no se repita
+    if (this.products.some((product) => product.code === code)) {
+      console.log("Producto con código proporcionado ya existe");
+      return;
+    }
 
-        id: idProduct,
-     
-        title,
-     
-        description,
-     
-        price,
-     
-        thumbnail,
-     
-        code,
-     
-        stock,
-     
-       };
+   // ID autoincrementable
+    const newProduct = {
+      id: this.productIdCounter++,
+      title,
+      description,
+      price,
+      thumbnail,
+      code,
+      stock,
+    };
 
-  
+    // Agregar el producto al arreglo
+    this.products.push(newProduct);
+  }
 
-    if (Object.values(product).includes(undefined)) {
-
-        console.log("Faltan datos");
-     
-        return this.products.push(product);
-     
-      }
-}
-
-getProducts() {
-   
+  getProducts() {
     return this.products;
   }
-
-  productExiste(id) {
-    
-
-    return this.products.find((producto) => producto.id === id);
-  }
-
-  getProductById(id) {
-
-    !this.productExiste(id)
-      ? console.log("Not found")
-      : console.log(this.productExiste(id));
-  }
-
 }
 
+// Ejemplo de uso:
+const productManager = new ProductManager();
 
-const ProductManager = new ProductManager();
+productManager.addProduct("Manzanas", "Rojas", 2000, "m1", "apple123", 100);
+productManager.addProduct("Bananos", "Pequeños", 1800, "B2", "banana456", 200);
 
-
-
-ProductManager.addProduct(
-
- "Manzanas",
-
- "Rojas",
-
- 2000,
-
- "m1",
-
- 100
-
-);
-
-ProductManager.addProduct(
-
- "Bananos",
-
- "pequeños",
-
- 1800,
-
- "B2",
-
- 200
-
-);
+console.log(productManager.getProducts());
 
 
-console.log(ProductManager.getProducts());
-
-ProductManager.getProductById(4);
-
-console.log(ProductManager.getProducts());
-
-
-//ejercicio shirly
