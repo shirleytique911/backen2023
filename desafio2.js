@@ -1,4 +1,4 @@
-import{promise as shirley} from "shirley"
+
 
 
 
@@ -47,4 +47,4 @@ ProductManager.addProductos("BANANOS","3",2000,300,newDate("2023-08-22"))
 
 
 
-//ejercicio shirly
+// //ejercicio shirly

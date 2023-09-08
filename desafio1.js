@@ -45,4 +45,17 @@ productManager.addProduct("Bananos", "Pequeños", 1800, "B2", "banana456", 200);
 
 console.log(productManager.getProducts());
 
+ //? Consulta por # id de producto.
 
+getProductById = async (id) => {
+  let answerGetId = await this.readProducts();
+  if (!answerGetId.find((product) => product.id === id)) {
+    console.error("Not found");
+  } else {
+    console.log(answerGetId.find((product) => product.id === id));
+    console.log("Producto consultado con id: " + id)
+  }
+};
+
+
+//ejercicio shirley tique 1 entrega
