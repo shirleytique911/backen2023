@@ -36,6 +36,16 @@ class ProductManager {
     getProducts() {
       return this.products;
     }
+//? Consulta por # id de producto.
+getById(id) {
+  const product = this.products.find((product) => product.id === id);
+  if (!product) {
+    console.log(`No se encontró un producto con el ID ${id}`);
+    return null; // Puedes devolver null o un mensaje de error según tus necesidades
+  }
+  return product;
+}
+
   }
   
   // Ejemplo de uso:
@@ -56,15 +66,7 @@ class ProductManager {
   }
   
   
-   //? Consulta por # id de producto.
-   getById(id) {
-    const product = this.products.find((product) => product.id === id);
-    if (!product) {
-      console.log(`No se encontró un producto con el ID ${id}`);
-      return null; // Puedes devolver null o un mensaje de error según tus necesidades
-    }
-    return product;
-  }
+   
   
   
   
