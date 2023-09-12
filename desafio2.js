@@ -1,6 +1,4 @@
-// {
-//   "type" :"module"
-// }
+
 
 const fs = require('fs');
 
@@ -20,7 +18,7 @@ class ProductManager {
         this.productIdCounter = maxId + 1;
       }
     } catch (error) {
-      console.error('Error initializing ProductManager:', error.message);
+      console.error('Error de inicialización ProductManager:', error.message);
     }
   }
 
@@ -28,7 +26,7 @@ class ProductManager {
     try {
       fs.writeFileSync(this.path, JSON.stringify(this.products, null, 2), 'utf8');
     } catch (error) {
-      console.error('Error saving data to file:', error.message);
+      console.error('Error al guardar datos en el archivo:', error.message);
     }
   }
 
@@ -65,13 +63,13 @@ class ProductManager {
   updateProduct(id, updatedProductData) {
     const index = this.products.findIndex((product) => product.id === id);
     if (index !== -1) {
-      // Preserve the original ID
+      
       updatedProductData.id = id;
       this.products[index] = updatedProductData;
       this.saveToFile();
-      return true; // Success
+      return true;
     }
-    return false; // Product not found
+    return false; 
   }
 
   deleteProduct(id) {
@@ -79,9 +77,9 @@ class ProductManager {
     if (index !== -1) {
       this.products.splice(index, 1);
       this.saveToFile();
-      return true; // Success
+      return true; 
     }
-    return false; // Product not found
+    return false; 
   }
 }
 
@@ -114,3 +112,4 @@ if (productManager.updateProduct(1, { title: 'Manzanas Verdes' })) {
 if (productManager.deleteProduct(1)) {
   console.log('Producto eliminado.');
 }
+
